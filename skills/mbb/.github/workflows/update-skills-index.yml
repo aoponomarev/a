@@ -1,0 +1,38 @@
+name: Update Skills Index
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'skills/**'
+      - '!skills/index/**' # Игнорируем изменения в самом индексе
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Generate skills index
+        run: python generate_skills_index.py
+        working-directory: ${{ github.workspace }}
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git add skills/index/index-mbb.md
+          git diff --staged --quiet || git commit -m "Auto: Update skills index"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
