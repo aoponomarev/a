@@ -16,6 +16,13 @@ This protocol **MUST** be activated immediately after:
 - [ ] **Register**: Add the URL to `events/NEWS_SOURCES.json`.
   - *Priority*: 8-10 for core infra, 5-7 for libs.
   - *Note*: Ensure `type` is correctly set (`github`, `official`, or `llm-api`).
+- [ ] **Status Mapping**:
+  - **IF** the source is NOT yet integrated into MBB code/logic:
+    - Set `integrated: false` in `NEWS_SOURCES.json`.
+    - *UI Rule*: These sources are displayed at the bottom with `.opacity-50`.
+  - **IF** the source is already integrated:
+    - Set `integrated: true`.
+    - *UI Rule*: These sources are displayed in the primary zone.
 - [ ] **Verify**: Ensure n8n `V2_NEWS_Swarm` can reach the source.
 
 ### Pillar II: History & Context (Evolution)
