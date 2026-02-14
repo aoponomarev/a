@@ -1,6 +1,6 @@
 ---
 id: integration-artificial-analysis-iq
-title: "Integration: Artificial Analysis IQ Scoring"
+title: Integration - Artificial Analysis IQ Scoring
 scope: skills-mbb
 tags: [#integration, #benchmarks, #artificial-analysis, #iq, #agents]
 priority: high

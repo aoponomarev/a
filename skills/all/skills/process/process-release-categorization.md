@@ -1,6 +1,6 @@
 ---
 id: process-release-categorization
-title: "Категоризация релизов: Task vs Skill vs Task&Skill"
+title: Категоризация релизов - Task vs Skill vs Task&Skill
 scope: skills
 tags: [#process, #categorization, #releases, #v2, #news-swarm]
 priority: high

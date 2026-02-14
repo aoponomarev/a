@@ -1,6 +1,6 @@
 ---
 id: process-n8n-security-oauth-protocols
-title: "n8n 2.6.4: OAuth Protocol Security and Webhook Conflict Awareness"
+title: n8n 2.6.4 - OAuth Protocol Security and Webhook Conflict Awareness
 scope: skills
 tags: [#process, #n8n, #security, #oauth, #webhooks]
 priority: medium

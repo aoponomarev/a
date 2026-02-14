@@ -1,6 +1,6 @@
 ---
 id: docker-port-shadow-diagnosis
-title: "Troubleshooting: Rogue Local Process Shadowing Docker Port"
+title: Troubleshooting - Rogue Local Process Shadowing Docker Port
 scope: skills
 tags: [#troubleshooting, #docker, #ports, #windows, #debugging, #n8n, #continue]
 priority: high

@@ -1,6 +1,6 @@
 ---
 id: integration-mcp-sdk-security-rollout
-title: "Integration: MCP SDK Security Rollout (>=1.26.0)"
+title: Integration - MCP SDK Security Rollout (>=1.26.0)
 scope: skills-mbb
 tags: [#integration, #mcp, #security, #dependencies]
 priority: high

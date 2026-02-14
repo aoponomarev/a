@@ -1,6 +1,6 @@
 ---
 id: docker-code-not-updating
-title: "Troubleshooting: Docker Container Ignoring Code Changes"
+title: Troubleshooting - Docker Container Ignoring Code Changes
 scope: skills
 tags: [#troubleshooting, #docker, #bind-mount, #windows, #node, #env]
 priority: high

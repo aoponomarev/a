@@ -1,6 +1,6 @@
 ---
 id: process-ollama-v015-improvements
-title: "Ollama v0.15.6: Auto-download and Context Fixes"
+title: Ollama v0.15.6 - Auto-download and Context Fixes
 scope: skills
 tags: [#process, #ollama, #local-llm, #model-management]
 priority: low

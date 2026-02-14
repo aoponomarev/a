@@ -1,3 +1,13 @@
+---
+id: infra-global-management
+title: Global Infrastructure Management (OneDrive SSOT)
+scope: skills-mbb
+tags: [#infrastructure, #onedrive, #ssot, #registry]
+priority: medium
+created_at: 2026-02-01
+updated_at: 2026-02-14
+---
+
 # Skill: Global Infrastructure Management (OneDrive SSOT)
 
 ## Context

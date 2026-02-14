@@ -1,6 +1,6 @@
 ---
 id: process-skill-code-loop-anchors
-title: Process: Skill-to-Code Loop Anchors
+title: Process - Skill-to-Code Loop Anchors
 scope: skills
 tags: [#process, #meta-skill, #cross-links, #comments, #regression]
 priority: high

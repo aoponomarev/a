@@ -1,6 +1,6 @@
 ---
 id: process-n8n-workflow-hygiene
-title: "n8n Workflow Hygiene: dedup, publish, rollout"
+title: n8n Workflow Hygiene - dedup, publish, rollout
 scope: skills
 tags: [#process, #n8n, #workflows, #dedup, #publish, #operations]
 priority: critical

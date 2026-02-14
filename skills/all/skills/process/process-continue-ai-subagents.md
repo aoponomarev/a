@@ -1,6 +1,6 @@
 ---
 id: process-continue-ai-subagents
-title: "Continue AI v1.2.15: Subagents and Agent Skills"
+title: Continue AI v1.2.15 - Subagents and Agent Skills
 scope: skills
 tags: [#process, #continue-ai, #subagents, #agent-skills, #mcp, #config]
 priority: high

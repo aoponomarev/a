@@ -1,6 +1,6 @@
 ---
 id: process-nodejs-v25-api-preview
-title: "Node.js v25.6.0 API Preview (Current: v20)"
+title: Node.js v25.6.0 API Preview (Current - v20)
 scope: skills
 tags: [#process, #nodejs, #api, #future, #migration]
 priority: low
