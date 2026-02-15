@@ -2,41 +2,52 @@
 id: protocol-command-vzp
 title: Protocol: Command ВЗП (Planned Execution)
 scope: skills
-tags: [#protocol, #command, #planning, #autonomy]
+tags: [#protocol, #command, #planning, #autonomy, #ВЗП]
+---
+version: 1.2.0
 priority: high
-created_at: 2026-02-05
-updated_at: 2026-02-05
+shadow_index: "Default autonomous execution protocol (ВЗП). Enforces step-by-step planning, console verification, skill anchoring, and mandatory ФИН closure."
+relations: [process-external-integration-closure, process-skill-code-loop-anchors]
+updated_at: 2026-02-15
 ---
 
 # Protocol: Command `ВЗП` (Planned Execution)
 
 > **Command**: `ВЗП` (Выполни Задание Планово).
-> **Context**: Default mode for complex coding and infrastructure tasks.
+> **Goal**: High-reliability autonomous task execution with zero technical debt.
 
 ## 1. Core Principles
-1.  **Detailed Planning**: Before any action, create a comprehensive and safe execution plan.
-2.  **Step-by-Step Verification**: Stop after each step for deep verification via console/terminal.
-3.  **Infrastructure Integrity**: Check affected architecture and infrastructure to ensure the application remains functional.
-4.  **Autonomous Correction**: If errors or malfunctions occur, independently modify code, infrastructure, or relevant skills to resolve them.
-5.  **Minimal Interruption**: Do not involve the user unless absolutely necessary (e.g., missing API keys).
+
+1.  **Detailed Planning**: Create a comprehensive plan with checkboxes before any action.
+2.  **Step-by-Step Console Verification**: **MANDATORY**. Run tests or syntax checks after *every* code change. Never assume code works.
+3.  **Skill Anchoring**: Every new pattern or architectural decision must be documented in a skill and linked via `// Skill anchor:` in the code.
+4.  **Mandatory ФИН**: Every `ВЗП` session MUST end with the `ФИН` (Finalization) protocol.
+5.  **Autonomous Correction**: Fix errors independently using logs and diagnostics.
 
 ## 2. Execution Workflow
-1.  **Plan**: Draft a multi-step plan addressing the user's request.
-2.  **Execute**: Perform one step of the plan.
-3.  **Verify**:
-    - Check logs/terminal output.
-    - Verify architecture consistency.
-    - Ensure no regressions in related systems.
-4.  **Fix**: If verification fails, diagnose and fix immediately.
-5.  **Repeat**: Proceed to the next step only after successful verification.
-6.  **Finalize (Evolution Update)**: After completing all steps of the plan:
-    - Summarize technical achievements and architectural changes.
-    - **MANDATORY**: Update `docs/project-evolution.txt` with a concise entry for the current date.
-    - Follow the format and rules defined in `docs/project-evolution.txt`.
 
-## 3. Resource Management
-- **API Keys**: If a key is missing, search the shared storage/vault before asking the user.
-- **Skills**: Update or create skills if the task introduces new patterns or changes existing ones.
+### Step 1: Planning
+- Draft a multi-step plan addressing the request.
+- Define verification commands for each step.
 
-## 4. Default Mode
-This protocol is considered **default** for all tasks involving code changes or infrastructure modifications, even if the user forgets to explicitly use the `ВЗП` prefix.
+### Step 2: Iterative Execution
+- **Execute**: Perform one atomic change.
+- **Verify**: Run console commands (e.g., `node --check`, `npm test`, `curl`).
+- **Anchor**: Add `// Skill anchor: <id>` to affected files.
+- **Fix**: If verification fails, diagnose and fix before proceeding.
+
+### Step 3: Finalization (ФИН)
+After all steps are completed, execute the **ФИН 2.1** protocol:
+1.  **Sync**: Update `settings-sync-mbb.ps1`.
+2.  **Discovery**: Perform F-I-N-S analysis (for L2/L3 tasks).
+3.  **Indexing**: Run `node scripts/mbb-index-gen.js --use-obsidian`.
+4.  **Evolution**: Update `docs/project-evolution.txt`.
+
+## 3. Hard Constraints
+
+- **No Blind Edits**: Every edit must be followed by a verification tool call.
+- **No Orphan Skills**: Skills without anchors in the code are considered incomplete.
+- **No Unfinished Sessions**: `ВЗП` is not done until `ФИН` is executed.
+
+---
+*MBB KM v2.0 | Principle: Reliability First*
