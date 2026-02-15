@@ -4,16 +4,16 @@ title: "Process: External Integration Closure (ФИН 2.0)"
 scope: skills-mbb
 tags: [#process, #integration, #closure, #discovery, #ФИН]
 ---
-version: 2.0.0
+version: 2.1.0
 priority: high
-shadow_index: "Advanced finalization protocol (ФИН). Intelligent discovery of Features, Integrations, Settings, and Skills with ROI-based filtering."
+shadow_index: "Advanced finalization protocol (ФИН). Includes Autonomous Web Discovery based on 'Sources' context and ROI-based filtering."
 relations: [process-settings-sync, architecture-ssot, process-km-v2-maintenance]
 updated_at: 2026-02-15
 ---
 
 # Process: External Integration Closure (ФИН 2.0)
 
-> **Goal**: Finalize tasks while identifying high-value growth opportunities (F-I-N-S) without introducing technical debt or unnecessary costs.
+> **Goal**: Finalize tasks while identifying high-value growth opportunities (F-I-N-S) using autonomous web intelligence, strictly filtered by ROI and architectural fit.
 
 ## 1. Trigger & Thresholds
 
@@ -23,7 +23,7 @@ Command `ФИН` initiates a two-phase process: **Closure** (mandatory) and **Di
 | :--- | :--- | :--- | :--- |
 | **L1** | Routine | Bugfixes, minor edits | **Disabled** (Closure only) |
 | **L2** | Module | New scripts, local logic | **Local** (Settings/Skills only) |
-| **L3** | System | New "Sources", MCP, APIs | **Full** (F-I-N-S Discovery) |
+| **L3** | System | New "Sources", MCP, APIs | **Full + Web Intelligence** |
 
 ## 2. Phase 1: Standard Closure (Mandatory)
 
@@ -35,29 +35,40 @@ Command `ФИН` initiates a two-phase process: **Closure** (mandatory) and **Di
 
 ## 3. Phase 2: Intelligent Discovery (Ф-И-Н-С)
 
-Only for **L2/L3** tasks. Evaluate potential additions against the **ROI Filter**.
+Only for **L2/L3** tasks. For **L3**, the agent MUST perform **Autonomous Web Discovery**.
 
-### [Ф] Фичи (Features)
-- Search for "game-changer" features or lifehacks enabled by this integration.
+### 3.1. Web Intelligence (L3 Only)
+The agent must use `web_search` to find best practices and "hidden gems" for the specific source, using the following space:
+- **Context**: MBB Architecture (Docker, n8n, Node.js, MCP, Obsidian).
+- **Search Patterns**:
+    - `"[Source Name] integration best practices for automation"`
+    - `"[Source Name] performance hacks for Node.js/Docker"`
+    - `"[Source Name] hidden features for developers 2026"`
+    - `"[Source Name] MCP server implementation patterns"`
+
+### 3.2. F-I-N-S Analysis
+
+#### [Ф] Фичи (Features)
+- Search for "game-changer" features enabled by this integration.
 - **Constraint**: Must simplify the current architecture or eliminate manual steps.
 
-### [И] Интеграции (Integrations)
+#### [И] Интеграции (Integrations)
 - Identify connectivity opportunities for performance or reliability.
 - **Constraint**: **Zero-Cost Policy**. Only free, reliable, and community-standard solutions.
 
-### [Н] Настройки (Settings)
-- Find "must-have" settings or performance tweaks.
-- **Constraint**: Must have a clear data circulation path (Input -> Process -> Output).
+#### [Н] Настройки (Settings)
+- Find "must-have" settings or performance tweaks discovered via web intelligence.
+- **Constraint**: Must have a clear data circulation path.
 
-### [С] Навыки (Skills)
+#### [С] Навыки (Skills)
 - Propose "Glue Skills" that bind the new block into the MBB ecosystem.
 
 ## 4. ROI Filter (Utility vs. Cost)
 
 Before proposing any discovery item, the agent MUST verify:
 1.  **Necessity**: Does data actually need to circulate through this new path?
-2.  **Maintenance**: Will the gain in performance/reliability exceed the cost of future audits?
-3.  **Stability**: Does it avoid "fragile" or unmaintained dependencies?
+2.  **Maintenance**: Will the gain exceed the cost of future audits? (ROI > 1.5x).
+3.  **Stability**: Avoid "fragile" or unmaintained dependencies.
 
 **Rule**: If ROI < 1.5x (estimated), the item is discarded.
 
@@ -66,6 +77,7 @@ Before proposing any discovery item, the agent MUST verify:
 If Discovery is active, append to the final report:
 ```
 ### ФИН Discovery (Level: L3)
+- [Web Intelligence]: <Summary of search findings>
 - [Ф] Feature: <Description> | ROI: <High/Med>
 - [И] Integration: <Description> | ROI: <High/Med>
 - [Н] Setting: <Description> | ROI: <High/Med>
