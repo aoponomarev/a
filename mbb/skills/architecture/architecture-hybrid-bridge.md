@@ -33,5 +33,14 @@
 ## 6. Evolution Checklist
 - When adding new tool endpoints, update:
   - `control-plane/README.md`
-  - `HYBRID_BRIDGE_PLAN.md`
+  - `docs/A_INFRASTRUCTURE.md`
   - skill anchors in affected `.js` files
+
+## 7. Validation Checklist
+- `npm run check` in `control-plane/`.
+- `npm test` in `control-plane/` (includes OpenAPI generation + self-test).
+- Health probe must pass with root `.env` key source:
+  - `checkN8nHealth()` returns `ok`.
+  - `listActiveWorkflows()` returns active workflow inventory.
+- Verify event logging:
+  - `logs/control-plane.log` has startup and tool entries.
