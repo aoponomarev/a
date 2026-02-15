@@ -36,4 +36,4 @@ IconManager.preload(['BTC', 'ETH']);
 
 ## 5. File Map
 - `@core/api/icon-manager.js`: Resolution logic.
-- `@libs/assets/coins/`: Icon storage.
+- `@../a/libs/assets/coins/`: Icon storage.

@@ -27,5 +27,5 @@ updated_at: 2026-02-01
 2.  **Consistency**: All skills in a batch must follow the latest `process-skill-template.md`.
 
 ## 4. File Map
-- `@a/skills/mbb/skills/index/index-mbb.md`: The Map.
+- `@../a/skills/mbb/skills/index/index-mbb.md`: The Map.
 - `global/LLM/infra-registry.json`: Source of truth for agent performance during review.

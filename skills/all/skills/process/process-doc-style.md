@@ -38,4 +38,4 @@ Core protocol commands MUST use Cyrillic abbreviations to serve as distinct sema
 - **English**: All new content in English (except the anchors above).
 
 ## 5. File Map
-- `@skills/process/process-doc-levels.md`: Hierarchy.
+- `@../a/skills/all/skills/process/process-doc-levels.md`: Hierarchy.

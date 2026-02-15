@@ -31,5 +31,5 @@ If placed wrong:
 3.  **Link**: Update cross-refs.
 
 ## 3. File Map
-- `@skills/`: Global Repo.
+- `@../a/skills/`: Global Repo.
 - `@skills-mbb/`: Project Repo.

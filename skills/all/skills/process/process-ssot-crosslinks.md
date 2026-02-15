@@ -28,5 +28,5 @@ Every new skill MUST be listed in the relevant Index:
 - `a/skills/mbb/skills/index/index-mbb.md`
 
 ## 4. File Map
-- `@skills/`: Global rules.
+- `@../a/skills/`: Global rules.
 - `@skills-mbb/`: Project implementation.

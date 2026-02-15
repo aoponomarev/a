@@ -45,4 +45,4 @@ A skill is translated from Russian to English **ONLY AFTER** it has been approve
 ## 5. File Map
 - `@skills-mbb/drafts/`: Russian workspace.
 - `@skills/skills/`: English production (Global).
-- `@a/skills/mbb/skills/`: English production (Project).
+- `@../a/skills/mbb/skills/`: English production (Project).

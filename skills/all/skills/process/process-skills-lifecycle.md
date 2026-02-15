@@ -32,4 +32,4 @@ updated_at: 2026-02-08
 
 ## 4. File Map
 - `@events/SKILL_CANDIDATES.json`: The Queue.
-- `@skills/`: The Library.
+- `@../a/skills/`: The Library.

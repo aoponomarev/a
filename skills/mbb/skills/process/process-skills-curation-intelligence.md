@@ -33,4 +33,4 @@ updated_at: 2026-02-01
 3.  **Size Limit**: Skills > 150 lines are candidates for decomposition.
 
 ## 4. File Map
-- `@a/skills/mbb/skills/index/index-mbb.md`: The Index.
+- `@../a/skills/mbb/skills/index/index-mbb.md`: The Index.

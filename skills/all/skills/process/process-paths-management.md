@@ -32,4 +32,4 @@ When moving machines:
 3.  Update Docker volumes if needed.
 
 ## 5. File Map
-- `@MBB/INFRASTRUCTURE_CONFIG.yaml`: The Path Registry.
+- `@INFRASTRUCTURE_CONFIG.yaml`: The Path Registry.

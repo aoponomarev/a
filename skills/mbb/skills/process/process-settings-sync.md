@@ -1,14 +1,17 @@
 ---
 id: process-settings-sync
-title: Process: AIS Settings Sync v2.0 (Master)
+title: Process: AIS Settings Sync v2.1 (Master)
 scope: skills-mbb
-tags: [#process, #sync, #cursor, #continue, #git, #ssot, #onedrive]
-priority: critical
-created_at: 2026-02-02
-updated_at: 2026-02-02
+tags: [#process, #settings, #sync, #onedrive]
+version: 2.1.0
+priority: high
+shadow_index: "Unified synchronization of development environment settings (Cursor, Continue, Git, Terminal) between Home and Office PCs via OneDrive. Supports v5.0 group sync."
+relations: [process-session-handoff, process-external-integration-closure]
+created_at: 2026-01-30
+updated_at: 2026-02-15
 ---
 
-# Process: AIS Settings Sync v2.0 (Master)
+# Process: AIS Settings Sync v2.1 (Master)
 
 > **Context**: Unified synchronization of ALL development environment settings between Home/Office PCs via OneDrive.
 > **SSOT**: This skill is the single source of truth for settings sync.
@@ -41,11 +44,11 @@ D:\Clouds\AO\OneDrive\AI\
 | **Continue** | `config.yaml`, `.continuerc.json`, `.continueignore` | `AI\Global\Continue\` | `%USERPROFILE%\.continue\` |
 | **Git** | `.gitconfig` | `AI\Global\Git\` | `%USERPROFILE%\` |
 | **Terminal** | `.wslconfig` | `AI\Global\Terminal\` | `%USERPROFILE%\` |
-| **Project (MBB)** | `.cursorrules` | `AI\Projects\MBB\` | `MBB\.cursorrules` |
+| **Project (MBB)** | `.cursorrules`, `.cursor/rules/*.mdc` | `AI\Projects\MBB\` | `MBB\.cursor/rules/` |
 
 ## 3. Sync Commands
 
-**Script**: `powershell .\scripts\sync-cursor-settings.ps1 [action]`
+**Script**: `powershell .\scripts\settings-sync-mbb.ps1 [action]` (v5.0 supports GLB/PRJ/HST/ALL)
 
 | Action | Description | When to Use |
 |--------|-------------|-------------|
@@ -59,7 +62,7 @@ D:\Clouds\AO\OneDrive\AI\
 ### 4.1. Session Start (Manual Restore)
 Agent should NOT execute restore automatically at the beginning of every session unless explicitly requested by the user.
 ```
-1. Run: powershell .\scripts\sync-cursor-settings.ps1 restore (ONLY IF REQUESTED)
+1. Run: powershell .\scripts\settings-sync-mbb.ps1 restore (ONLY IF REQUESTED)
 2. Restart Cursor if config.yaml or settings.json changed
 3. Confirm: "✅ Settings restored from OneDrive"
 ```
@@ -67,7 +70,7 @@ Agent should NOT execute restore automatically at the beginning of every session
 ### 4.2. Session End (Auto-Backup)
 Agent MUST execute when user says "Закрываем рабочий день", "Копируй настройки в облако", or at explicit session termination:
 ```
-1. Run: powershell .\scripts\sync-cursor-settings.ps1 backup
+1. Run: powershell .\scripts\settings-sync-mbb.ps1 backup
 2. Confirm: "✅ Cloud SSOT updated"
 ```
 
@@ -106,7 +109,7 @@ Common issues:
 1. Create `D:\Clouds\AO\OneDrive\AI\Projects\ProjectName\`
 2. Add `.cursorrules` to that folder
 3. Update `INFRASTRUCTURE_CONFIG.yaml` → `ais_settings.projects`
-4. Update `sync-cursor-settings.ps1` → add new sync calls
+4. Update `settings-sync-mbb.ps1` → add new sync calls
 
 ## 10. Related Skills
 
@@ -120,5 +123,5 @@ Common issues:
 ## 11. File Map
 
 - `@INFRASTRUCTURE_CONFIG.yaml` — All paths and profiles (ais_settings section)
-- `@scripts/sync-cursor-settings.ps1` — Sync script implementation
+- `@scripts/settings-sync-mbb.ps1` — Sync script implementation
 - `@docs/A_AIS_SETTINGS.md` — Full documentation

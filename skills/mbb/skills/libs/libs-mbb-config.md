@@ -35,4 +35,4 @@ await window.libLoader.load('vue', '3.4.0');
 ```
 
 ## 4. File Map
-- `@libs/`: Root directory.
+- `@../a/libs/`: Root directory.

@@ -7,6 +7,13 @@ priority: high
 created_at: 2026-02-01
 updated_at: 2026-02-02
 ---
+version: 2.1.0
+priority: high
+shadow_index: "Protocol for ensuring all local changes (settings, secrets, logs) are synced to OneDrive before closing the session. Triggers handoff ritual."
+relations: [process-settings-sync, process-external-integration-closure]
+created_at: 2026-02-02
+updated_at: 2026-02-15
+---
 
 # Process: Session Handoff & Auto-Backup
 
@@ -26,13 +33,14 @@ This protocol is activated by semantic triggers such as:
 Check for local modifications in:
 - Cursor: `settings.json`, `keybindings.json`
 - Continue: `config.yaml`, `.continuerc.json`, `.continueignore`
-- Project: `.cursorrules`
+- Project: `.cursorrules`, `.cursor/rules/*.mdc` (MDC)
 - Secrets: `.env`
 
 **Action**: Run unified sync:
 ```powershell
 powershell .\scripts\sync-cursor-settings.ps1 backup
 ```
+**Note**: For new integrations, use command `ФИН` to ensure sync script coverage (see `process-external-integration-closure`).
 If `.env` was modified, the Hard Link to `AI/_VAULT/envs/mbb.env` will auto-sync.
 
 ### Step 2: Update Project Evolution
@@ -58,6 +66,6 @@ Perform a final `git status` check.
 3.  **No Unsolicited Commits**: Automatic commits during handoff/reporting are strictly prohibited. Always wait for user confirmation.
 
 ## 4. File Map
-- `@scripts/sync-cursor-settings.ps1`: The sync engine.
+- `@scripts/settings-sync-mbb.ps1`: The sync engine.
 - `@docs/project-evolution.txt`: The milestone log.
 - `@logs/`: Session context storage.

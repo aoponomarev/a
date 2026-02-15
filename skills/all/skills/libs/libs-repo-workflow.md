@@ -29,4 +29,4 @@ updated_at: 2026-02-08
 - **UMD Only**: Must support browser loading.
 
 ## 4. File Map
-- `@libs/`: The repository.
+- `@../a/libs/`: The repository.

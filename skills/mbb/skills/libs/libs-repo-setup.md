@@ -27,4 +27,4 @@ updated_at: 2026-02-01
 - **Clean**: Remove old unused versions to save space.
 
 ## 4. File Map
-- `@libs/download-libs.sh`: Setup script.
+- `@../a/libs/download-libs.sh`: Setup script.
