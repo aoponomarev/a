@@ -178,6 +178,8 @@
   },
   "active": "629ebe6397995ee9",
   "lastOpenFiles": [
+    "mbb/skills/process/process-token-safety.md",
+    "mbb/drafts/process-token-safe-search-grep-protocol-anti-token-eater.md",
     "mbb/skills/process/process-git-submodule-drift-control.md",
     "mbb/skills/process/process-env-sync-governance.md",
     "mbb/skills/libs/libs-zod-v3-v4-compat-layer.md",
@@ -201,8 +203,6 @@
     "mbb/skills/process/process-git-foundation-reliability.md",
     "mbb/skills/process/process-git-submodule-resilience.md",
     "mbb/skills/process/process-docker-resource-governance.md",
-    "mbb/skills/process/protocol-docker-image-hardening.md",
-    "mbb/skills/process/process-docker-disaster-recovery.md",
-    "mbb/skills/process/protocol-git-ai-collaboration.md"
+    "mbb/skills/process/protocol-docker-image-hardening.md"
   ]
 }
