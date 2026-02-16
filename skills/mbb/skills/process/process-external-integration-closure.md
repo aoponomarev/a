@@ -1,19 +1,19 @@
 ---
 id: process-external-integration-closure
-title: "Process: External Integration Closure (ФИН 2.0)"
+title: "Process: External Integration Closure (ФИН 2.3)"
 scope: skills-mbb
 tags: [#process, #integration, #closure, #discovery, #ФИН]
 ---
-version: 2.1.0
+version: 2.3.0
 priority: high
-shadow_index: "Advanced finalization protocol (ФИН). Includes Autonomous Web Discovery based on 'Sources' context and ROI-based filtering."
+shadow_index: "Consumer-oriented finalization protocol (ФИН). Ranked multi-variant F-I-N-S discovery with persuasive value descriptions."
 relations: [process-settings-sync, architecture-ssot, process-km-v2-maintenance]
 updated_at: 2026-02-15
 ---
 
-# Process: External Integration Closure (ФИН 2.0)
+# Process: External Integration Closure (ФИН 2.3)
 
-> **Goal**: Finalize tasks while identifying high-value growth opportunities (F-I-N-S) using autonomous web intelligence, strictly filtered by ROI and architectural fit.
+> **Goal**: Finalize tasks while identifying high-value growth opportunities (F-I-N-S) using ranked multi-variant analysis focused on delivering clear, persuasive utility to the user.
 
 ## 1. Trigger & Thresholds
 
@@ -33,55 +33,52 @@ Command `ФИН` initiates a two-phase process: **Closure** (mandatory) and **Di
 4.  **Secrets**: Sync new `.env` keys to `.env.example` and vault.
 5.  **Anchors**: Add `// Skill anchor:` in code pointing to relevant skills.
 
-## 3. Phase 2: Intelligent Discovery (Ф-И-Н-С)
+## 3. Phase 2: Multi-Variant Discovery (Ф-И-Н-С)
 
-Only for **L2/L3** tasks. For **L3**, the agent MUST perform **Autonomous Web Discovery**.
+Only for **L2/L3** tasks. The goal is to provide a ranked spectrum of high-value options, ensuring no "hidden gems" are missed.
 
 ### 3.1. Web Intelligence (L3 Only)
-The agent must use `web_search` to find best practices and "hidden gems" for the specific source, using the following space:
-- **Context**: MBB Architecture (Docker, n8n, Node.js, MCP, Obsidian).
-- **Search Patterns**:
-    - `"[Source Name] integration best practices for automation"`
-    - `"[Source Name] performance hacks for Node.js/Docker"`
-    - `"[Source Name] hidden features for developers 2026"`
-    - `"[Source Name] MCP server implementation patterns"`
+Use `web_search` with MBB-specific patterns (Docker, n8n, MCP, Obsidian) to find best practices.
 
-### 3.2. F-I-N-S Analysis
+### 3.2. F-I-N-S Analysis & Ranking Rules
+- **Ranking**: Order items by **significance/impact** (most important first).
+- **Filtering**: Show only high-value items that pass the ROI filter (>1.5x).
+- **Format**: Numbered list. Each item starts with the **Idea Name** in bold.
+- **Persuasive Description**: Follow the idea name with 2-3 sentences that clearly explain the **benefit and utility** to the user in a consumer-oriented language. Remove explicit "Description:" or "ROI:" labels.
 
 #### [Ф] Фичи (Features)
-- Search for "game-changer" features enabled by this integration.
-- **Constraint**: Must simplify the current architecture or eliminate manual steps.
+Killer features or "game-changers" that simplify architecture or eliminate manual steps.
 
 #### [И] Интеграции (Integrations)
-- Identify connectivity opportunities for performance or reliability.
-- **Constraint**: **Zero-Cost Policy**. Only free, reliable, and community-standard solutions.
+Connectivity opportunities for performance or reliability. **Zero-Cost Policy** (Free/Open Source only).
 
 #### [Н] Настройки (Settings)
-- Find "must-have" settings or performance tweaks discovered via web intelligence.
-- **Constraint**: Must have a clear data circulation path.
+Performance tweaks or "must-have" configurations with a clear data circulation path.
 
 #### [С] Навыки (Skills)
-- Propose "Glue Skills" that bind the new block into the MBB ecosystem.
+"Glue Skills" binding the block into the MBB ecosystem.
 
-## 4. ROI Filter (Utility vs. Cost)
+## 4. ROI Filter & Selection Rules
 
-Before proposing any discovery item, the agent MUST verify:
-1.  **Necessity**: Does data actually need to circulate through this new path?
-2.  **Maintenance**: Will the gain exceed the cost of future audits? (ROI > 1.5x).
-3.  **Stability**: Avoid "fragile" or unmaintained dependencies.
+1.  **Utility Filter**: Only show items where gain exceeds audit/support costs (ROI > 1.5x).
+2.  **User Selection Format**: User selects variants using the **Default Selection Format**:
+    - Format: `[Category Letter][Variant Numbers]` (e.g., `И12` means Integrations 1 and 2 are selected).
+    - Combined example: `И12, Н1, С2` or `И12 Н1 С2`.
 
-**Rule**: If ROI < 1.5x (estimated), the item is discarded.
+## 5. Discovery Report Format (Consumer-Oriented)
 
-## 5. Discovery Report Format
-
-If Discovery is active, append to the final report:
 ```
 ### ФИН Discovery (Level: L3)
-- [Web Intelligence]: <Summary of search findings>
-- [Ф] Feature: <Description> | ROI: <High/Med>
-- [И] Integration: <Description> | ROI: <High/Med>
-- [Н] Setting: <Description> | ROI: <High/Med>
-- [С] Skill: <Propose ID>
+**[Web Intelligence]**: <Summary>
+**[Ф] Features**:
+1. **<Idea Name>**. <Persuasive utility description sentence 1>. <Persuasive utility description sentence 2>.
+2. **<Idea Name>**. <Persuasive utility description sentence 1>. <Persuasive utility description sentence 2>.
+**[И] Integrations**:
+1. **<Idea Name>**. <Persuasive utility description sentence 1>. <Persuasive utility description sentence 2>.
+**[Н] Settings**:
+1. **<Idea Name>**. <Persuasive utility description sentence 1>. <Persuasive utility description sentence 2>.
+**[С] Skills**:
+1. **<Idea Name>**. <Persuasive utility description sentence 1>. <Persuasive utility description sentence 2>.
 ```
 ---
-*MBB KM v2.0 | Principle: Reliability & Evolution*
+*MBB KM v2.0 | Principle: Consumer-Oriented Value*
