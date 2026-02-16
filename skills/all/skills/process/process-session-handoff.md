@@ -44,7 +44,7 @@ powershell .\scripts\sync-cursor-settings.ps1 backup
 If `.env` was modified, the Hard Link to `AI/_VAULT/envs/mbb.env` will auto-sync.
 
 ### Step 2: Update Project Evolution
-Ensure `docs/project-evolution.txt` is updated with the latest technical milestones achieved during the session.
+Ensure `docs/project-evolution.txt` is updated with the latest technical milestones using single-date aggregation (do not duplicate existing date records).
 
 ### Step 3: Session Report
 Generate a `logs/session-report.md` summarizing:

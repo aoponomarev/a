@@ -11,7 +11,7 @@ updated_at: 2026-02-15
 # Process - Preflight Diagnostics Quality Gate
 
 > **Goal**: Keep preflight diagnostics accurate and avoid false failures that block safe rollout.
-> **SSOT**: `scripts/git/preflight-solo.ps1`, runtime diagnostic scripts (e.g. sqlite snapshot).
+> **SSOT**: `scripts/git/preflight-solo.ps1`, runtime diagnostic scripts (e.g. sqlite snapshot, MCP SDK drift check).
 
 ## 1. Problem Pattern
 
@@ -23,6 +23,7 @@ updated_at: 2026-02-15
 - Diagnostics must be read-only and deterministic.
 - Each diagnostic path must be runnable in isolation from CLI.
 - New diagnostics require one positive test and one failure-path test.
+- Dependency drift diagnostics (SDK/schema) must verify both baseline and cross-package consistency.
 
 ## 3. Acceptance Checklist
 

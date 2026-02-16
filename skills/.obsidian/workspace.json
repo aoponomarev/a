@@ -178,6 +178,7 @@
   },
   "active": "629ebe6397995ee9",
   "lastOpenFiles": [
+    "mbb/skills/process/process-project-evolution-aggregation.md",
     "mbb/skills/process/process-preflight-diagnostics-quality-gate.md",
     "mbb/skills/process/protocol-git-commit-template-consistency.md",
     "mbb/skills/process/process-sqlite-health-snapshot.md",
@@ -202,7 +203,6 @@
     "mbb/skills/process/protocol-n8n-mcp-interaction.md",
     "mbb/skills/process/process-n8n-workflow-hygiene.md",
     "all/skills/process/protocol-slash-commands-usage.md",
-    "mbb/skills/process/process-continue-mcp-synergy.md",
-    "mbb/skills/process/process-github-workflow.md"
+    "mbb/skills/process/process-continue-mcp-synergy.md"
   ]
 }

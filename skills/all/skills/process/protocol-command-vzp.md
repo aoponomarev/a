@@ -7,7 +7,7 @@ tags: [#protocol, #command, #planning, #autonomy, #ВЗП]
 version: 1.2.0
 priority: high
 shadow_index: "Default autonomous execution protocol (ВЗП). Enforces step-by-step planning, console verification, skill anchoring, and mandatory ФИН closure."
-relations: [process-external-integration-closure, process-skill-code-loop-anchors]
+relations: [process-external-integration-closure, process-skill-code-loop-anchors, process-project-evolution-aggregation]
 updated_at: 2026-02-15
 ---
 
@@ -41,7 +41,7 @@ After all steps are completed, execute the **ФИН 2.1** protocol:
 1.  **Sync**: Update `settings-sync-mbb.ps1`.
 2.  **Discovery**: Perform F-I-N-S analysis (for L2/L3 tasks).
 3.  **Indexing**: Run `node scripts/mbb-index-gen.js --use-obsidian`.
-4.  **Evolution**: Update `docs/project-evolution.txt`.
+4.  **Evolution**: Update `docs/project-evolution.txt` using single-date aggregation rules (no duplicate date records).
 
 ## 3. Hard Constraints
 

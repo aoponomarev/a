@@ -24,6 +24,8 @@ updated_at: 2026-02-15
 - Side-effecting tools must support dry-run and explicit confirmation gates.
 - Logger failures must never crash tool execution.
 - Expose at least one health-check operation for dependency visibility.
+- Every tool must be classified as `read-only`, `mutating`, or `external`.
+- `mutating` tools require explicit approval path and traceable error code.
 
 ## 3. Connectivity Rules
 
