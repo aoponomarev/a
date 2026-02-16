@@ -178,6 +178,9 @@
   },
   "active": "629ebe6397995ee9",
   "lastOpenFiles": [
+    "mbb/skills/process/protocol-node-mcp-development.md",
+    "mbb/skills/process/process-node-dependency-lifecycle.md",
+    "mbb/skills/process/protocol-node-async-safety.md",
     "mbb/skills/process/protocol-git-ai-collaboration.md",
     "mbb/skills/process/process-git-submodule-resilience.md",
     "mbb/skills/process/process-docker-resource-governance.md",
