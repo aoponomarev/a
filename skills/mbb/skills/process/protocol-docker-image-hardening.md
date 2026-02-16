@@ -1,21 +1,40 @@
-# Docker Image & Runtime Hardening (v1.0)
+---
+id: protocol-docker-image-hardening
+title: Protocol - Docker Image Hardening
+scope: skills-mbb
+tags: [#protocol, #docker, #security, #build]
+priority: high
+created_at: 2026-02-15
+updated_at: 2026-02-15
+---
 
-> **Goal**: Ensure lightweight, secure, and performant container execution.
-> **Skill Anchor**: `docker/continue-cli/Dockerfile`
+# Protocol - Docker Image Hardening
 
-## 🏗️ BUILD STRATEGY (Ф2)
+> **Goal**: Keep images reproducible, fast, and safer by default.
+> **SSOT**: `docker/continue-cli/Dockerfile`
 
-- **Base Image**: Always use `-slim` or `-alpine` variants.
-- **BuildKit Cache**: Use `--mount=type=cache,target=/root/.npm` to speed up builds.
-- **Multi-Stage**: (Optional) Use multi-stage builds to keep production images small.
+## 1. Baseline Rules
 
-## 🏃 RUNTIME SECURITY (С2)
+- Use stable LTS base image (`node:20-slim` currently accepted).
+- Keep layer count minimal and deterministic.
+- Install only required OS packages (`--no-install-recommends`).
 
-- **PID 1**: Always use an init system (`tini`) to handle signals and reap zombies.
-- **Non-Root**: (Planned) Transition services to run as `node` user instead of `root`.
-- **Resource Limits**: (Н1 - Optional) Define `mem_limit` and `cpus` in `docker-compose.yml` for critical services.
+## 2. Build Performance Rules
 
-## 📡 NETWORKING (Н3)
+- Use BuildKit cache in Compose build:
+  - `cache_from: type=local,src=.buildx-cache`
+  - `cache_to: type=local,dest=.buildx-cache-new,mode=max`
+- Reuse package manifests before full source copy for better cache hits.
 
-- **Isolation**: Use internal networks for backend-to-backend communication.
-- **Host Gateway**: Use `host.docker.internal` to access services running on the Windows host (like Obsidian or Ollama).
+## 3. Runtime Safety Rules
+
+- Use `init: true` in Compose services to handle zombie processes and clean signal propagation.
+- Rotate logs (`json-file`, `max-size`, `max-file`) to prevent disk exhaustion.
+- Use `tmpfs` for `/tmp` when possible to reduce disk I/O pressure.
+
+## 4. Verification
+
+1. `docker compose config`
+2. `docker compose build continue-cli`
+3. `docker compose up -d continue-cli`
+4. `curl http://127.0.0.1:3002/health`

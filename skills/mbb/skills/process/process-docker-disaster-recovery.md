@@ -1,40 +1,46 @@
-# Docker Disaster Recovery Protocol (v1.0)
+---
+id: process-docker-disaster-recovery
+title: Process - Docker Disaster Recovery
+scope: skills-mbb
+tags: [#process, #docker, #recovery, #reliability]
+priority: high
+created_at: 2026-02-15
+updated_at: 2026-02-15
+---
 
-> **Goal**: Rapid restoration of the MBB containerized environment after failure.
-> **SSOT**: `docker-compose.yml`
+# Process - Docker Disaster Recovery
 
-## 🚨 EMERGENCY RECOVERY (recover)
+> **Goal**: Restore MBB Docker stack without losing working state.
+> **SSOT**: `docker-compose.yml`, `datasets/`, `.env`
 
-If containers fail to start or are in a `restarting` loop:
+## 1. Fast Health Triage
 
-1.  **Full Reset**:
-    ```bash
-    docker compose down --remove-orphans
-    docker compose up -d --force-recreate
-    ```
-2.  **Cache Purge**:
-    ```bash
-    docker builder prune -a
-    docker compose build --no-cache
-    ```
-3.  **Volume Check**:
-    If SQLite is corrupted, restore from `_migration_backup/` or OneDrive version history.
+1. `docker compose ps`
+2. `docker compose logs --tail=100 n8n continue-cli`
+3. `docker stats --no-stream`
 
-## 🧹 MAINTENANCE (Ф1)
+If containers are healthy and API endpoints respond, stop here.
 
-Use profiles to manage load:
-- **Core only**: `docker compose --profile core up -d`
-- **All services**: `docker compose --profile all up -d`
+## 2. Safe Recovery (No Destructive Steps First)
 
-## 📊 LOG AUDIT (И3)
+1. Validate config: `docker compose config`
+2. Restart only affected service:
+   - `docker compose restart n8n`
+   - or `docker compose restart continue-cli`
+3. Re-check:
+   - `curl http://127.0.0.1:5678/`
+   - `curl http://127.0.0.1:3002/health`
 
-Logs are limited to 10MB x 3 files. To view real-time errors:
-```bash
-docker compose logs -f --tail 100 n8n
-```
+## 3. Controlled Recreate
 
-## 🛡️ HARDENING (С2)
+Only if restart failed:
 
-- **Init Handling**: All Node.js containers use `tini` as PID 1 to prevent zombie processes.
-- **Read-Only**: Critical templates are mounted as `:ro`.
-- **Tmpfs**: `/tmp` is mounted in RAM to reduce SSD wear and speed up I/O.
+1. `docker compose up -d --force-recreate --no-deps n8n`
+2. `docker compose up -d --force-recreate --no-deps continue-cli`
+3. Validate UI and MCP flow.
+
+## 4. Data Protection Rule
+
+- Never remove named volumes before backup.
+- For incident capture, use:
+  - `powershell -ExecutionPolicy Bypass -File .\scripts\docker-event-obsidian-bridge.ps1 -Once`

@@ -1,19 +1,38 @@
-# Node.js Dependency & Lifecycle Management (v1.0)
+---
+id: process-node-dependency-lifecycle
+title: Process - Node Dependency Lifecycle
+scope: skills-mbb
+tags: [#process, #nodejs, #dependencies, #lifecycle]
+priority: high
+created_at: 2026-02-15
+updated_at: 2026-02-15
+---
 
-> **Goal**: Maintain a clean, secure, and up-to-date dependency tree.
-> **Skill Anchor**: `package.json`
+# Process - Node Dependency Lifecycle
 
-## 📦 DEPENDENCIES (С2)
+> **Goal**: Keep Node dependencies reproducible, secure, and compatible with current runtime policy.
+> **Skill Anchor**: `package.json`, `control-plane/package.json`
 
-- **Audit**: Run `npm run audit` regularly to check for vulnerabilities.
-- **Lockfile**: Always commit `package-lock.json` to ensure reproducible builds.
-- **Engines**: Specify `engines` in `package.json` to enforce Node.js version compatibility.
+## 1. Baseline Rules
 
-## 🧪 TESTING (Ф1)
+- Keep lockfiles versioned for deterministic installs.
+- Use `engines.node` in service packages that have strict runtime requirements.
+- Prefer explicit minor/patch updates over unbounded upgrade waves.
 
-- **Native Runner**: Use `node --test` for lightweight, dependency-free testing.
-- **CI/CD**: Ensure `npm test` and `npm run audit` pass in GitHub Actions.
+## 2. ABI and Native Dependency Rules
 
-## 🚀 DEPLOYMENT
+- For native packages (`better-sqlite3`), validate ABI compatibility before rollout.
+- When Node major version changes, run ABI gate checks first.
+- Align Docker image Node version and service engine policy.
 
-- **Clean Install**: Use `npm ci --production` in Dockerfiles to install only production dependencies based on the lockfile.
+## 3. Security and Stability Rules
+
+- Run dependency checks in local preflight for touched package zones.
+- Treat security upgrade as controlled rollout, not blind mass update.
+- Avoid adding new dependencies without clear runtime ROI.
+
+## 4. Solo Validation
+
+1. `node control-plane/scripts/self-test.js`
+2. `npm run env:check`
+3. `npm run index:gen`

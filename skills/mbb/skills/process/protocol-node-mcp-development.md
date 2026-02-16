@@ -1,21 +1,38 @@
-# Node.js MCP Development Protocol (v1.0)
+---
+id: protocol-node-mcp-development
+title: Protocol - Node MCP Development
+scope: skills-mbb
+tags: [#protocol, #nodejs, #mcp, #control-plane]
+priority: high
+created_at: 2026-02-15
+updated_at: 2026-02-15
+---
 
-> **Goal**: Standardize the creation and maintenance of MCP servers.
-> **Skill Anchor**: `control-plane/server.js`
+# Protocol - Node MCP Development
 
-## 🏗️ ARCHITECTURE (С3)
+> **Goal**: Standardize development of Node-based MCP services for safe operations.
+> **Skill Anchor**: `control-plane/server.js`, `mcp/*/server.js`
 
-- **SDK**: Use `@modelcontextprotocol/sdk` for standard-compliant implementation.
-- **Transport**: Default to `StdioServerTransport` for local AI agent integration.
-- **Schema**: Use `Zod` for tool input validation to provide clear error messages to agents.
+## 1. Architecture Rules
 
-## 🛠️ TOOL DESIGN
+- Use official MCP SDK and stdio transport for local integration.
+- Validate tool inputs with `zod`.
+- Keep tool handlers null-safe (`params || {}`).
 
-- **Null Safety**: Always handle `params || {}` in tool handlers.
-- **Logging**: Use a dedicated logger to record tool usage and errors in `logs/`.
-- **Safety Gates**: Implement dry-run and confirmation tokens for tools with side effects.
+## 2. Safety Rules
 
-## 📡 CONNECTIVITY
+- Side-effecting tools must support dry-run and explicit confirmation gates.
+- Logger failures must never crash tool execution.
+- Expose at least one health-check operation for dependency visibility.
 
-- **Timeouts**: Implement timeouts for external API calls (e.g. n8n) using `AbortController`.
-- **Health Checks**: Provide a `check_system_health` tool to verify connectivity to all dependencies.
+## 3. Connectivity Rules
+
+- External requests must use timeout + abort pattern.
+- Normalize and validate external URLs before request.
+- Classify and surface response errors consistently.
+
+## 4. Solo Validation Path
+
+1. `node --check control-plane/server.js`
+2. `node control-plane/scripts/self-test.js`
+3. `curl http://127.0.0.1:3002/health`
