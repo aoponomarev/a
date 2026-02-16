@@ -178,6 +178,10 @@
   },
   "active": "629ebe6397995ee9",
   "lastOpenFiles": [
+    "mbb/skills/process/process-preflight-diagnostics-quality-gate.md",
+    "mbb/skills/process/protocol-git-commit-template-consistency.md",
+    "mbb/skills/process/process-sqlite-health-snapshot.md",
+    "mbb/skills/process/protocol-sqlite-readonly-diagnostics.md",
     "mbb/skills/process/process-ollama-node-integration-checks.md",
     "mbb/skills/process/protocol-ollama-timeout-fallback-contract.md",
     "mbb/skills/process/process-ollama-runtime-governance.md",
