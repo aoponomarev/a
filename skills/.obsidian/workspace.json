@@ -178,6 +178,9 @@
   },
   "active": "629ebe6397995ee9",
   "lastOpenFiles": [
+    "mbb/skills/process/process-docker-resource-governance.md",
+    "mbb/skills/process/protocol-docker-image-hardening.md",
+    "mbb/skills/process/process-docker-disaster-recovery.md",
     "mbb/skills/process/protocol-n8n-mcp-interaction.md",
     "mbb/skills/process/process-n8n-workflow-hygiene.md",
     "all/skills/process/protocol-slash-commands-usage.md",
