@@ -32,4 +32,4 @@ Use **Native Browser Tooltips** (`title` attribute). HTML-based tooltips are for
 
 ## 5. File Map
 - `@core/config/tooltips-config.js`: Dictionary.
-- `@shared/utils/tooltip-interpreter.js`: Logic.
+- `@core/api/tooltip-interpreter.js`: Logic.

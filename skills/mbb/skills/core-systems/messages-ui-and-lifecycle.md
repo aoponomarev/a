@@ -11,7 +11,7 @@ updated_at: 2026-02-01
 # Core Systems: Messages UI & Lifecycle
 
 > **Context**: Global system for displaying notifications, errors, and status updates.
-> **SSOT**: `core/utils/messages-store.js` (AppMessages)
+> **SSOT**: `shared/utils/messages-store.js` (AppMessages)
 
 ## 1. Lifecycle
 1.  **Creation**: `messagesConfig.get(key, params)` -> Raw Message Object.
@@ -30,6 +30,6 @@ updated_at: 2026-02-01
 - **`cmp-system-message`**: Individual Item. Handles animations and styling.
 
 ## 4. File Map
-- `@core/utils/messages-store.js`: Reactive Store.
+- `@shared/utils/messages-store.js`: Reactive Store.
 - `@shared/components/system-messages.js`: List Component.
 - `@shared/components/system-message.js`: Item Component.

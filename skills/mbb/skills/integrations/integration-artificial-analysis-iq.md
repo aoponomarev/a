@@ -87,6 +87,6 @@ Hovering over IQ shows tooltip with raw benchmark values (AA Coding, LiveCodeBen
 ## 7. File Map
 
 - `@scripts/benchmark-service.js`: API client, cache, matching logic.
-- `@scripts/benchmark-cache.json`: Cached data (395+ models).
+- `events/BENCHMARK_CACHE.json`: Cached data (395+ models, auto-generated at runtime).
 - `@mcp/continue-wrapper/server.js`: Endpoints that call benchmark service.
 - `@mcp/V2_logic.js`: UI rendering of IQ scores, tooltips.

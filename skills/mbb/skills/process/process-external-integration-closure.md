@@ -1,6 +1,6 @@
 ---
 id: process-external-integration-closure
-title: "Process: External Integration Closure (ФИН 2.4)"
+title: "Process: External Integration Closure (ФИН 2.5)"
 scope: skills-mbb
 tags: [#process, #integration, #closure, #discovery, #ФИН]
 ---

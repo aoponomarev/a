@@ -191,6 +191,6 @@ When a file operation fails:
 
 ## 9. File Map
 
-- `@scripts/sync-cursor-settings.ps1` — Example of correct PowerShell usage
+- `@scripts/settings-sync-mbb.ps1` — Example of correct PowerShell usage
 - `@INFRASTRUCTURE_CONFIG.yaml` — Path definitions
 - `@docs/A_AIS_SETTINGS.md` — Settings sync documentation

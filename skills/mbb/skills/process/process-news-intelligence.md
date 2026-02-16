@@ -27,5 +27,5 @@ updated_at: 2026-02-01
 2.  **Verification**: High-impact news requires 2+ independent sources.
 
 ## 4. File Map
-- `@core/api/news-provider.js`: Client-side access.
-- `@events/news-queue.json`: Data source.
+- `core/api/news-provider.js`: Client-side access (planned).
+- `events/news-queue.json`: Data source (auto-generated at runtime via n8n pipeline).
