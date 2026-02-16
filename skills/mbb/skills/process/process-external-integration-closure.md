@@ -1,17 +1,17 @@
 ---
 id: process-external-integration-closure
-title: "Process: External Integration Closure (ФИН 2.3)"
+title: "Process: External Integration Closure (ФИН 2.4)"
 scope: skills-mbb
 tags: [#process, #integration, #closure, #discovery, #ФИН]
 ---
-version: 2.3.0
+version: 2.4.0
 priority: high
-shadow_index: "Consumer-oriented finalization protocol (ФИН). Ranked multi-variant F-I-N-S discovery with persuasive value descriptions."
+shadow_index: "Consumer-oriented finalization protocol (ФИН). Ranked multi-variant F-I-N-S discovery with persuasive value descriptions, solo-safe package, and KAИ/skills-array recalibration."
 relations: [process-settings-sync, architecture-ssot, process-km-v2-maintenance]
 updated_at: 2026-02-15
 ---
 
-# Process: External Integration Closure (ФИН 2.3)
+# Process: External Integration Closure (ФИН 2.4)
 
 > **Goal**: Finalize tasks while identifying high-value growth opportunities (F-I-N-S) using ranked multi-variant analysis focused on delivering clear, persuasive utility to the user.
 
@@ -45,6 +45,8 @@ Use `web_search` with MBB-specific patterns (Docker, n8n, MCP, Obsidian) to find
 - **Filtering**: Show only high-value items that pass the ROI filter (>1.5x).
 - **Format**: Numbered list. Each item starts with the **Idea Name** in bold.
 - **Persuasive Description**: Follow the idea name with 2-3 sentences that clearly explain the **benefit and utility** to the user in a consumer-oriented language. Remove explicit "Description:" or "ROI:" labels.
+- **Solo-Safe Package (Mandatory for L2/L3)**: After main variants, include a compact `solo-safe` bundle (minimum operationally safe subset) to reduce rollout risk in single-developer mode.
+- **KAИ + Skills Recalibration (Mandatory for L2/L3)**: Validate options against current architecture/infrastructure (КАИ) and the live skills array. Remove variants that conflict with active SSOT/process protocols or duplicate existing high-priority skills without incremental value.
 
 #### [Ф] Фичи (Features)
 Killer features or "game-changers" that simplify architecture or eliminate manual steps.
@@ -61,7 +63,9 @@ Performance tweaks or "must-have" configurations with a clear data circulation p
 ## 4. ROI Filter & Selection Rules
 
 1.  **Utility Filter**: Only show items where gain exceeds audit/support costs (ROI > 1.5x).
-2.  **User Selection Format**: User selects variants using the **Default Selection Format**:
+2.  **KAИ Coherence Filter**: Keep only variants compatible with active architecture constraints (paths, runtime model, MCP topology, env governance).
+3.  **Skills-Array Filter**: Prefer variants that either (a) reuse existing high-priority skills, or (b) add clearly missing glue with explicit integration path.
+4.  **User Selection Format**: User selects variants using the **Default Selection Format**:
     - Format: `[Category Letter][Variant Numbers]` (e.g., `И12` means Integrations 1 and 2 are selected).
     - Combined example: `И12, Н1, С2` or `И12 Н1 С2`.
 
@@ -79,6 +83,11 @@ Performance tweaks or "must-have" configurations with a clear data circulation p
 1. **<Idea Name>**. <Persuasive utility description sentence 1>. <Persuasive utility description sentence 2>.
 **[С] Skills**:
 1. **<Idea Name>**. <Persuasive utility description sentence 1>. <Persuasive utility description sentence 2>.
+**[solo-safe package]**:
+- **Default**: <Compact subset like Ф13 И12 Н12 С12>. <Why this subset is safest for immediate rollout>.
+**[КАИ/Skills recalibration]**:
+- **Dropped as conflicting/duplicate**: <Item IDs>.
+- **Elevated as architecture-critical**: <Item IDs>.
 ```
 ---
 *MBB KM v2.0 | Principle: Consumer-Oriented Value*
