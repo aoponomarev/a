@@ -26,6 +26,7 @@ updated_at: 2026-02-15
    - `GET /api/infra/dependency-health`
 3. Run drift check:
    - `node scripts/mcp-sdk-drift-check.js`
+   - includes Zod baseline and cross-package consistency checks
 4. Rebuild/restart `continue-cli` container after dependency updates.
 5. Verify `/health` and `/api/health-check` return success.
 
@@ -45,5 +46,6 @@ updated_at: 2026-02-15
 
 - `node scripts/mcp-sdk-drift-check.js` -> `ok: true`.
 - `GET /api/infra/dependency-health` -> `@modelcontextprotocol/sdk` should be `ok` for all MCP-related package files.
+- Zod policy must be green in drift-check report (no baseline/drift violations).
 - V2 tabs `Skills & Tasks` and `Watch` load without MCP-side regressions.
 

@@ -5,7 +5,7 @@ scope: skills
 tags: [#libs, #zod, #migration, #validation, #mcp]
 priority: medium
 created_at: 2026-02-10
-updated_at: 2026-02-10
+updated_at: 2026-02-16
 source_release: zod/4.3.6
 ---
 
@@ -40,6 +40,8 @@ When ready to migrate:
 3. Review all `z.object()` schemas for strict mode behavior
 4. Test all MCP tool input validations
 5. Run MCP servers and verify tool calls work
+6. Use compatibility layer skill before broad rollout:
+   - `skills/mbb/skills/libs/libs-zod-v3-v4-compat-layer.md`
 
 ## 4. Decision
 
@@ -47,3 +49,8 @@ When ready to migrate:
 - A v4-only feature is needed
 - v3 reaches EOL
 - Major dependency requires v4
+
+## 5. Governance Link
+
+- Runtime schema consistency and error-shape rules:
+  - `skills/mbb/skills/process/process-zod-schema-governance.md`

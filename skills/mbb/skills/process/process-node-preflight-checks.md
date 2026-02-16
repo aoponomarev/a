@@ -28,6 +28,7 @@ updated_at: 2026-02-15
 3. Control-plane self-test if control-plane changed.
 4. Root env schema check if env governance changed.
 5. MCP SDK drift check when MCP/control-plane/dependency manifests are touched.
+6. Zod baseline check is included in MCP drift check (major line + consistency).
 
 ## 3. Acceptance
 
