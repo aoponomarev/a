@@ -1,31 +1,57 @@
 ---
 id: yandex-openai-proxy-for-continue-ide
-title: "Yandex OpenAI Proxy for Continue IDE"
-description_ru: "Yandex Cloud API models (yandexgpt, yandexgpt-lite) are accessed from Continue IDE via an OpenAI-compatible proxy in continue-wrapper (server.js). The proxy translates OpenAI chat completions format to Yandex Foundation Models API format. Key facts: (1) assistant:* models are translation-only, use yandexgpt for general-purpose chat; (2) Proxy runs on CONTINUE_WRAPPER_PORT (default 3002); (3) config.yaml uses provider:openai with apiBase pointing to local proxy; (4) GET /openai/v1/models and POST /openai/v1/chat/completions endpoints required."
-scope: "Yandex Cloud API models (yandexgpt, yandexgpt-lite) are accessed from Continue IDE via an OpenAI-compatible proxy in continue-wrapper (server.js). The proxy translates OpenAI chat completions format to Yandex Foundation Models API format. Key facts: (1) assistant:* models are translation-only, use yandexgpt for general-purpose chat; (2) Proxy runs on CONTINUE_WRAPPER_PORT (default 3002); (3) config.yaml uses provider:openai with apiBase pointing to local proxy; (4) GET /openai/v1/models and POST /openai/v1/chat/completions endpoints required."
-tags: [#yandex, #continue, #proxy, #openai-compat, #integration]
+title: Yandex OpenAI Proxy for Continue IDE
+description_ru: YandexGPT подключен к Continue IDE через OpenAI-совместимый прокси в continue-wrapper. Критично - прокси ОБЯЗАН поддерживать SSE streaming, иначе Continue молча игнорирует ответ. Только модель yandexgpt используется (lite и assistant отключены как бесполезные).
+scope: YandexGPT model is accessed from Continue IDE via an OpenAI-compatible SSE streaming proxy in continue-wrapper (server.js). Critical requirement - proxy MUST support SSE streaming (text/event-stream) because Continue always sends stream:true and silently discards non-streaming JSON responses. Only yandexgpt model is enabled (lite and assistant removed as not useful in Continue context).
+tags: [yandex, continue, proxy, openai-compat, integration, streaming, sse]
 priority: high
 created_at: 2026-02-17
 updated_at: 2026-02-17
-source: "mcp:propose_skill"
-source_refs: ["mcp/continue-wrapper/server.js", "scripts/sync-continue-commanders.js"]
+source: mcp:propose_skill
+source_refs: [mcp/continue-wrapper/server.js, scripts/sync-continue-commanders.js]
 ---
 
 # Yandex OpenAI Proxy for Continue IDE
 
-> **Context**: Continue IDE (v1.2.x) has limited native support for `provider: yandex`. To enable YandexGPT and Yandex Assistant models, a local OpenAI-compatible proxy is used.
+> **Context**: Continue IDE has no native `provider: yandex`. YandexGPT is accessed via a local OpenAI-compatible proxy with **SSE streaming**.
 > **SSOT**: `mcp/continue-wrapper/server.js`
 
 ## 1. Architecture
 
-The `continue-wrapper` server (port 3002) provides an OpenAI-compatible API that translates requests to Yandex Cloud APIs.
+The `continue-wrapper` server (port 3002) provides an OpenAI-compatible API that translates requests to Yandex Foundation Models API (`llm.api.cloud.yandex.net`).
 
-- **General Chat**: `yandexgpt` / `yandexgpt-lite` models are routed to the Foundation Models API (`llm.api.cloud.yandex.net`).
-- **Translation**: `assistant:*` models are routed to the Assistant API (`rest-assistant.api.cloud.yandex.net`).
+**Only `yandexgpt` is used** — `yandexgpt-lite` and `assistant:*` models are removed from Continue config (too limited for coding IDE context).
 
-## 2. Configuration (Continue `config.yaml`)
+## 2. Critical: SSE Streaming Requirement
 
-To use Yandex models in Continue, configure them as `provider: openai` pointing to the local proxy.
+**Continue IDE always sends `stream: true`**. If the proxy returns a regular JSON response instead of SSE chunks, Continue **silently discards** the response. The user sees only the "Agent rule" messages from config but no model output.
+
+The proxy MUST:
+1. Detect `stream: true` in the request body
+2. Set Yandex API `completionOptions.stream: true`
+3. Parse Yandex NDJSON streaming chunks (cumulative text)
+4. Compute deltas and emit OpenAI SSE format: `data: {json}\n\n`
+5. End with `data: [DONE]\n\n`
+
+### Yandex Streaming Format
+Yandex returns NDJSON where each line is a complete JSON with **cumulative text**:
+```json
+{"result":{"alternatives":[{"message":{"role":"assistant","text":"Hello"},"status":"ALTERNATIVE_STATUS_PARTIAL"}],...}}
+{"result":{"alternatives":[{"message":{"role":"assistant","text":"Hello! How are you?"},"status":"ALTERNATIVE_STATUS_FINAL"}],...}}
+```
+
+The proxy computes deltas: first chunk emits "Hello", second emits "! How are you?".
+
+### OpenAI SSE Output Format
+```
+data: {"id":"chatcmpl-xxx","object":"chat.completion.chunk","created":...,"model":"yandexgpt","choices":[{"index":0,"delta":{"role":"assistant","content":"Hello"},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-xxx","object":"chat.completion.chunk","created":...,"model":"yandexgpt","choices":[{"index":0,"delta":{"role":"assistant","content":"! How are you?"},"finish_reason":"stop"}]}
+
+data: [DONE]
+```
+
+## 3. Configuration (Continue `config.yaml`)
 
 ```yaml
 models:
@@ -34,24 +60,32 @@ models:
     model: yandexgpt
     apiBase: http://127.0.0.1:3002/openai/v1
     apiKey: YOUR_YANDEX_API_KEY
+    roles:
+      - chat
+      - edit
 ```
 
-## 3. Proxy Endpoints
+## 4. Proxy Endpoints
 
-- `GET /openai/v1/models`: Returns the list of available Yandex models for discovery.
-- `POST /openai/v1/chat/completions`: Handles chat requests, converts messages to Yandex format `{role, text}`, and returns an OpenAI-compatible response.
-
-## 4. Model Capabilities
-
-- **YandexGPT**: General-purpose coding and chat. Supports `system` messages and `max_tokens`.
-- **Yandex Assistant**: Specialized for translation. Returns empty results for general coding queries.
+- `GET /openai/v1/models` — Returns available models (only `yandexgpt`).
+- `POST /openai/v1/chat/completions` — Chat handler with dual mode:
+  - `stream: true` → SSE streaming (required by Continue)
+  - `stream: false` → Regular JSON response (for curl/testing)
 
 ## 5. Troubleshooting
 
-- **404 Not Found**: Ensure `CONTINUE_WRAPPER_PORT=3002` is set in `.env` and the server is running.
-- **Empty Response**: Check if you are using an `assistant:*` model for a non-translation task. Switch to `yandexgpt`.
-- **CORS Errors**: The proxy bypasses CORS restrictions when running from `file://` protocol.
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| Only "Agent rule" shown, no output | Proxy returns non-streaming JSON | Ensure SSE streaming is implemented |
+| 404 Not Found | Server not running on port 3002 | Check `CONTINUE_WRAPPER_PORT=3002` in `.env`, restart server |
+| Empty response in curl | YANDEX_API_KEY not set | Set in `.env` |
+| CORS preflight fails | Missing Authorization header | Ensure `Access-Control-Allow-Headers` includes `Authorization` |
+
+## 6. Limitations
+
+- YandexGPT is significantly weaker than GPT-4/Claude for coding tasks
+- Response quality is best with clear, direct prompts (Russian or English)
+- `yandexgpt-lite` and `assistant:*` models removed — too limited for IDE use
 
 ## Related Skills
-- [integrations-continue-mcp-setup](../integrations/integrations-continue-mcp-setup.md)
 - [openrouter-404-versus-v2-fallback-mismatch](./openrouter-404-versus-v2-fallback-mismatch.md)
