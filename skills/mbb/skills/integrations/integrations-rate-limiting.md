@@ -5,7 +5,7 @@ scope: skills-mbb
 tags: [#integrations, #rate-limit, #api, #throttling]
 priority: high
 created_at: 2026-01-25
-updated_at: 2026-02-12
+updated_at: 2026-02-19
 ---
 
 # Integrations: Rate Limiting
@@ -34,11 +34,20 @@ try {
 2.  **Feedback Loop**: MUST call `increaseTimeout()` on 429 and `decreaseTimeout()` on success to adapt to dynamic server loads.
 3.  **One Limiter Per Domain**: Do not create multiple limiters for the same API key.
 
-## 4. File Map
-- `@core/api/rate-limiter.js`: Logic.
-- `@core/config/data-providers-config.js`: Limits definition.
+## 4. Request Registry (Complementary System)
+`core/api/request-registry.js` provides a **call-frequency guard** on top of the token bucket:
+- Persists call records in localStorage per endpoint key.
+- Enforces minimum intervals (e.g. 4h for `getTopCoins`).
+- Applies 3x interval multiplier after 429.
+- API: `isAllowed(key)`, `recordCall(key)`, `getTimeUntilNext(key)`, `clear()`.
+- Integrated in `data-provider-manager.js` to gate heavy API calls.
 
-## 5. 429 Recovery Protocol (file:// + CoinGecko)
+## 5. File Map
+- `@core/api/rate-limiter.js`: Token bucket adaptive limiter.
+- `@core/api/request-registry.js`: Call-frequency guard (localStorage-persisted).
+- `@core/config/data-providers-config.js`: Limits definition (CoinGecko: 15 rpm, 0.5 rps).
+
+## 6. 429 Recovery Protocol (file:// + CoinGecko)
 Use this protocol for large top-list loads where `429` can happen in bursts.
 
 1. **Honor server delay first**  
@@ -57,6 +66,6 @@ Use this protocol for large top-list loads where `429` can happen in bursts.
 5. **UI-level transparency**  
    - Emit progress states (`retrying`, `waiting`, `chunk_done`) so user sees why loading takes longer.
 
-## 6. Code Anchor Policy
+## 7. Code Anchor Policy
 When changing this skill, ensure inline anchors exist in runtime retry/status branches.
 See: `a/skills/mbb/skills/process/process-skill-code-loop-anchors.md`

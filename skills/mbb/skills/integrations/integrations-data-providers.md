@@ -5,7 +5,7 @@ scope: skills-mbb
 tags: [#integrations, #data-providers, #coingecko, #yahoo, #file-protocol, #fallback]
 priority: high
 created_at: 2026-01-25
-updated_at: 2026-02-12
+updated_at: 2026-02-19
 ---
 
 # Integrations: Data Providers
@@ -28,12 +28,20 @@ updated_at: 2026-02-12
 2.  **Register**: Add to `data-provider-manager.js`.
 3.  **Config**: Define limits and URLs in `data-providers-config.js`.
 
-## 4. File Map
-- `@core/api/data-provider-manager.js`: The Switcher.
-- `@core/api/data-providers/base-provider.js`: The Interface.
-- `@core/api/data-providers/coingecko-provider.js`: The Implementation.
+## 4. Additional Provider API
+- `getCoinData(coinIds)` — chunked loading for coin ID arrays.
+- `getCoinIdBySymbol(symbol)` — reverse lookup.
+- `tryLocalTopCoinsFallback()` — fallback to `http://127.0.0.1:3002/api/market/top-coins` when CoinGecko is rate-limited.
+- `BaseDataProvider` utility methods: `requiresApiKey()`, `handleHttpError()`, `logError()`, `logWarning()`.
+- `DataProviderManager.getTopCoins()` integrates with `request-registry.js` (4-hour minimum interval between heavy calls).
 
-## 5. file:// Top-N Runbook (CoinGecko)
+## 5. File Map
+- `@core/api/data-provider-manager.js`: The Switcher (+ request registry integration).
+- `@core/api/data-providers/base-provider.js`: The Interface.
+- `@core/api/data-providers/coingecko-provider.js`: The Implementation (+ local fallback).
+- `@core/api/request-registry.js`: Call-frequency guard.
+
+## 6. file:// Top-N Runbook (CoinGecko)
 Use this recipe when loading large default sets (for example, Top-250 by market cap or volume) on `file://`.
 
 1. **Chunk large requests**  
@@ -58,7 +66,7 @@ Use this recipe when loading large default sets (for example, Top-250 by market 
    - Do not hard-delete cache before refresh attempts.
    - Keep stale data readable when live refresh fails.
 
-## 6. Merge Rule for Multiple Coin Sets
+## 7. Merge Rule for Multiple Coin Sets
 When user loads one default set and then merges another:
 
 1. **Union the actual coins**  
@@ -73,12 +81,12 @@ When user loads one default set and then merges another:
    - Prefer `coinSet.coins` already returned by loader.
    - Call `loadCoinsByIds` only for truly missing IDs.
 
-## 7. Regression Checklist
+## 8. Regression Checklist
 - After first load (Top-250): `coins == activeCoinSetIds == totalCoinsCount`.
 - After merge with another Top-250 set: all counters reflect union size.
 - `missingLen`/unresolved coins are `0` for the happy path.
 - Progress bar and fallback states remain visible during long loads.
 
-## 8. Code Anchor Policy
+## 9. Code Anchor Policy
 When this skill is updated, place or refresh inline code anchors in risk branches (retry/fallback/merge), not only in file headers.
 See: `a/skills/mbb/skills/process/process-skill-code-loop-anchors.md`

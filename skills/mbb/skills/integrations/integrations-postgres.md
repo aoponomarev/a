@@ -5,7 +5,7 @@ scope: skills-mbb
 tags: [#integrations, #postgres, #database, #sync, #migration]
 priority: medium
 created_at: 2026-01-25
-updated_at: 2026-02-14
+updated_at: 2026-02-19
 ---
 
 # Integrations: PostgreSQL & Sync
@@ -14,7 +14,7 @@ updated_at: 2026-02-14
 
 ## 1. Architecture
 - **Client**: `postgres-client.js` (REST wrapper via Cloud Functions).
-- **Manager**: `postgres-sync-manager.js` handles delta-updates between local state and DB.
+- **Manager**: `postgres-sync-manager.js` handles user sync and cloud portfolio reads. Full delta-merge is a future milestone (Этап 4).
 - **Server**: Yandex Cloud Function `mbb-api` (`d4e4884229p96ea4kt1e`) acting as a secure gateway.
 - **API Gateway**: `d5dl2ia43kck6aqb1el5.k1mxzkh0.apigw.yandexcloud.net`
 
@@ -39,7 +39,13 @@ When schema changes are needed:
 6.  Remove admin endpoint, redeploy clean version.
 7.  Always use `IF EXISTS` / `IF NOT EXISTS` guards in DDL.
 
-## 5. File Map
+## 5. Guard Layers
+- **Feature toggle**: `isFeatureEnabled('postgresSync')` from `appConfig` gates all sync operations.
+- **UI toggle**: `isUiToggleEnabled()` checks `uiState.cloud.postgres.enabled`.
+- **Skip classification**: `classifySyncSkipReason()` prevents log noise from expected skips (missing baseUrl, CORS on file://).
+- **Auth integration**: EventBus `'auth-state-changed'` triggers `syncUser()` + `syncPortfoliosFromCloud()`.
+
+## 6. File Map
 - `@core/api/postgres-sync-manager.js`: Sync logic.
 - `@core/domain/portfolio-adapters.js`: Payload shaping (includes `extra_json`).
 - `@cloud/yandex/schema-postgres.sql`: Canonical schema.
