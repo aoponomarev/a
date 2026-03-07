@@ -19,9 +19,7 @@ libs/
 ├── vue/
 │   └── 3.4.0/vue.global.js
 ├── chartjs/
-│   └── 4.4.0/chart.umd.js
-└── assets/
-    └── coins/ (Images)
+│       └── 4.4.0/chart.umd.js
 ```
 
 ## 2. Load Priority

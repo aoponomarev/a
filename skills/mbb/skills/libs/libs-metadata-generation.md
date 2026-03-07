@@ -11,7 +11,7 @@ updated_at: 2026-02-01
 # Libs: Metadata Generation
 
 > **Context**: Creating the `coins.json` registry from CoinGecko.
-> **SSOT**: `libs/assets/data/coins.json`
+> **SSOT**: `data/coins.json`
 
 ## 1. Process
 1.  **Fetch**: `coins-metadata-generator.js` pulls coin list from CoinGecko.

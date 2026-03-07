@@ -14,7 +14,7 @@ updated_at: 2026-02-01
 > **SSOT**: `core/api/icon-manager.js`
 
 ## 1. Logic
-1.  **Primary**: Local/Repo Assets (`libs/assets/coins/`).
+1.  **Primary**: Local/Repo Assets (`a/coins/`).
 2.  **Fallback**: External CDN (CoinGecko).
 3.  **Alias**: Map weird symbols to known filenames (e.g. `WETH` -> `ETH`).
 
@@ -36,4 +36,4 @@ IconManager.preload(['BTC', 'ETH']);
 
 ## 5. File Map
 - `@core/api/icon-manager.js`: Resolution logic.
-- `@../a/libs/assets/coins/`: Icon storage.
+- `@../a/coins/`: Icon storage.
