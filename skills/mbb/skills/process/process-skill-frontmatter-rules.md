@@ -20,7 +20,7 @@ updated_at: 2026-02-14
 ```yaml
 title: Process - Skill Frontmatter Format Rules
 title: Troubleshooting - Docker Container Ignoring Code Changes
-title: Cloud - Yandex mbb-api Function Deployment
+title: Cloud - Yandex coins-db-gateway Function Deployment
 ```
 
 ### Incorrect (title will be lost)

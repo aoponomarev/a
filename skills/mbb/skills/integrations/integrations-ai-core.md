@@ -26,7 +26,7 @@ updated_at: 2026-02-19
 ## 3. Key Recovery (Cloudflare KV Fallback)
 When `getApiKey(providerName)` finds no key in local cache:
 1. Calls `resolveSettingsToken()` — first checks `localStorage('mbb_github_token')`, then bootstraps from `http://127.0.0.1:3002/api/infra/bootstrap/github-token`.
-2. Fetches all settings from `https://mbb-api.ponomarev-ux.workers.dev/api/settings` with the resolved token.
+2. Fetches all settings from `https://app-api.ponomarev-ux.workers.dev/api/settings` with the resolved token.
 3. Saves recovered keys/settings to `cacheManager` so subsequent calls are instant.
 
 ## 4. Key Rules

@@ -15,7 +15,7 @@ updated_at: 2026-02-19
 ## 1. Architecture
 - **Client**: `postgres-client.js` (REST wrapper via Cloud Functions).
 - **Manager**: `postgres-sync-manager.js` handles user sync and cloud portfolio reads. Full delta-merge is a future milestone (Этап 4).
-- **Server**: Yandex Cloud Function `mbb-api` (`d4e4884229p96ea4kt1e`) acting as a secure gateway.
+- **Server**: Yandex Cloud Function `coins-db-gateway` (`d4e4884229p96ea4kt1e`) acting as a secure gateway.
 - **API Gateway**: `d5dl2ia43kck6aqb1el5.k1mxzkh0.apigw.yandexcloud.net`
 
 ## 2. Key Rules
@@ -50,4 +50,4 @@ When schema changes are needed:
 - `@core/domain/portfolio-adapters.js`: Payload shaping (includes `extra_json`).
 - `@cloud/yandex/schema-postgres.sql`: Canonical schema.
 - `@cloud/yandex/migrations/`: Migration scripts.
-- `@cloud/yandex/functions/mbb-api/index.js`: Cloud Function code.
+- `@cloud/yandex/functions/coins-db-gateway/index.js`: Cloud Function code.

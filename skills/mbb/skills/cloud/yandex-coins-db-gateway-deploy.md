@@ -1,6 +1,6 @@
 ---
-id: yandex-mbb-api-deploy
-title: Cloud - Yandex mbb-api Function Deployment
+id: yandex-coins-db-gateway-deploy
+title: Cloud - Yandex coins-db-gateway Function Deployment
 scope: skills-mbb
 tags: [#cloud, #yandex, #deploy, #postgres, #migration]
 priority: high
@@ -8,13 +8,13 @@ created_at: 2026-02-14
 updated_at: 2026-02-14
 ---
 
-# Cloud: Yandex mbb-api Function Deployment
+# Cloud: Yandex coins-db-gateway Function Deployment
 
-> **Context**: The `mbb-api` Cloud Function is the PostgreSQL gateway. Deploying it requires YC CLI with OAuth.
+> **Context**: The `coins-db-gateway` Cloud Function is the PostgreSQL gateway. Deploying it requires YC CLI with OAuth.
 
 ## 1. Function Identity
 - **Function ID**: `d4e4884229p96ea4kt1e`
-- **Name**: `mbb-api`
+- **Name**: `coins-db-gateway`
 - **Runtime**: `nodejs22`
 - **API Gateway**: `d5dl2ia43kck6aqb1el5.k1mxzkh0.apigw.yandexcloud.net`
 - **Folder ID**: `b1gv03a122le5a934cqj`
@@ -34,7 +34,7 @@ yc config set folder-id b1gv03a122le5a934cqj
 
 ### 2.2 Get current env vars (CRITICAL: preserve DB credentials)
 ```bash
-yc serverless function version list --function-name mbb-api --limit 1
+yc serverless function version list --function-name coins-db-gateway --limit 1
 # Note the version ID, then:
 yc serverless function version get <VERSION_ID> --format json > /tmp/fn-version.json
 # Extract env vars for reuse in deploy command
@@ -43,15 +43,15 @@ yc serverless function version get <VERSION_ID> --format json > /tmp/fn-version.
 ### 2.3 Create ZIP and deploy
 ```bash
 # From project root:
-powershell -Command "Set-Location 'cloud\yandex\functions\mbb-api'; Compress-Archive -Path 'index.js','package.json','package-lock.json','node_modules' -DestinationPath 'mbb-api-deploy.zip' -Force"
+powershell -Command "Set-Location 'cloud\yandex\functions\coins-db-gateway'; Compress-Archive -Path 'index.js','package.json','package-lock.json','node_modules' -DestinationPath 'coins-db-gateway-deploy.zip' -Force"
 
 yc serverless function version create \
-  --function-name mbb-api \
+  --function-name coins-db-gateway \
   --runtime nodejs22 \
   --entrypoint index.handler \
   --memory 128m \
   --execution-timeout 30s \
-  --source-path mbb-api-deploy.zip \
+  --source-path coins-db-gateway-deploy.zip \
   --environment "DB_HOST=<host>,DB_NAME=mbb_db,DB_PASSWORD=<pass>,DB_PORT=6432,DB_USER=mbb_admin"
 ```
 
@@ -61,7 +61,7 @@ yc serverless function version create \
 yc config profile create temp-empty
 yc config profile delete mbb-deploy
 # Delete ZIP:
-rm mbb-api-deploy.zip
+rm coins-db-gateway-deploy.zip
 ```
 
 ## 3. DB Migration Pattern (via temporary admin endpoint)
@@ -82,7 +82,7 @@ curl -s https://d5dl2ia43kck6aqb1el5.k1mxzkh0.apigw.yandexcloud.net/health
 ```
 
 ## 5. File Map
-- `@cloud/yandex/functions/mbb-api/index.js`: Function code.
-- `@cloud/yandex/functions/mbb-api/package.json`: Dependencies (pg).
+- `@cloud/yandex/functions/coins-db-gateway/index.js`: Function code.
+- `@cloud/yandex/functions/coins-db-gateway/package.json`: Dependencies (pg).
 - `@cloud/yandex/schema-postgres.sql`: Canonical DB schema.
 - `@cloud/yandex/migrations/`: Migration scripts.

@@ -29,7 +29,7 @@ updated_at: 2026-02-01
     ```bash
     wrangler deploy
     ```
-4.  **Health Check**: Visit `https://mbb-api.ponomarev-ux.workers.dev/health`.
+4.  **Health Check**: Visit `https://app-api.ponomarev-ux.workers.dev/health`.
 
 ## 3. Client Config
 Update `core/config/auth-config.js` with the correct `clientId` and `redirectUri`.

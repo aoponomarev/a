@@ -25,7 +25,7 @@ updated_at: 2026-02-19
    - Auth (Google OAuth).
    - State (D1 for relational, KV for cache + app settings).
 4. **Cloud (Yandex)**:
-   - Cloud Function `mbb-api` (PostgreSQL proxy for portfolio sync).
+   - Cloud Function `coins-db-gateway` (PostgreSQL proxy for portfolio sync).
    - Managed PostgreSQL (portfolio persistence, `extra_json JSONB`).
 
 ## 2. Tech Stack

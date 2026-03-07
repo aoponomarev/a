@@ -38,4 +38,4 @@ if (event.httpMethod === 'OPTIONS') {
 - **Timeout**: Set to `30s` to accommodate LLM latency.
 
 ## 4. File Map
-- `@cloud/yandex/functions/mbb-api/`: Source code (includes YandexGPT proxy logic).
+- `@cloud/yandex/functions/coins-db-gateway/`: Source code (includes YandexGPT proxy logic).

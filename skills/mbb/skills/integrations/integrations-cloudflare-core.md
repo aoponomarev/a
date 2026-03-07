@@ -19,7 +19,7 @@ updated_at: 2026-02-19
 - **KV (NoSQL)**:
   - `API_CACHE` — ephemeral API response caching.
   - `SETTINGS` — persistent app settings (API keys, provider config, folder IDs).
-- **Base URL**: `https://mbb-api.ponomarev-ux.workers.dev`.
+- **Base URL**: `https://app-api.ponomarev-ux.workers.dev`.
 
 ## 2. Route Map (index.js)
 | Path | Handler | Purpose |
