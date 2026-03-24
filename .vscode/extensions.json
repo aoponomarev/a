@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "usernamehw.errorlens",
+        "github.vscode-github-actions",
+        "eamodio.gitlens",
+        "usernamehw.prism",
+        "bierner.markdown-mermaid",
+        "davidanson.vscode-markdownlint",
+        "redhat.vscode-yaml"
+    ]
+}
