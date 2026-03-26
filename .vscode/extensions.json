@@ -6,6 +6,22 @@
         "usernamehw.prism",
         "bierner.markdown-mermaid",
         "davidanson.vscode-markdownlint",
-        "redhat.vscode-yaml"
-    ]
+        "redhat.vscode-yaml",
+        "continue.continue",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-russian",
+        "google.gemini-cli-vscode-ide-companion",
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "kilocode.kilo-code",
+        "ms-vscode.live-server",
+        "garlicbreadcleric.pandoc-markdown-syntax",
+        "starkwang.markdown",
+        "christian-kohler.path-intellisense",
+        "anysphere.cursorpyright",
+        "ms-python.vscode-python-envs",
+        "ms-ceintl.vscode-language-pack-ru",
+        "vue.volar",
+        "johnsoncodehk.volar"
+      ]
 }
