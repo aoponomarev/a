@@ -6,6 +6,7 @@
         "usernamehw.prism",
         "bierner.markdown-mermaid",
         "davidanson.vscode-markdownlint",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+        "ms-vscode.powershell"
     ]
 }
