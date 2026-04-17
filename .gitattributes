@@ -1,0 +1,15 @@
+# Bundle artefacts (Android shell-updater)
+d/a/bundles/*.zip binary
+d/a/manifest.json text eol=lf
+d/a/manifest.json.sig binary
+d/a/public-key.pem text eol=lf
+
+# Datasets archive (append-only ndjson from datasets-archiver Worker)
+data/metrics/**/*.ndjson binary
+
+# Defaults
+* text=auto eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
