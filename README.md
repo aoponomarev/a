@@ -10,7 +10,7 @@ Two independent contours live here:
 - `d/a/manifest.json` — current bundle manifest (version, sha256, url, releasedAt).
 - `d/a/manifest.json.sig` — Ed25519 detached signature of `manifest.json` (base64).
 - `d/a/public-key.pem` — Ed25519 public key (for out-of-band verification and audits).
-- `d/a/bundles/bundle-vN.zip` — versioned JS/HTML/Vue bundles consumed by the `executor-shell.apk`.
+- `d/a/v/<YYMMDDNN>.zip` — versioned JS/HTML/Vue bundles consumed by the `executor-shell.apk`. Filename encodes UTC calendar day + intra-day publish slot (`YY`=year mod 100, `MM`=01..12, `DD`=01..31, `NN`=01..99); it is equal to `manifest.version` as an integer, so lexicographic sort == release order. See `#for-bundle-filename-yymmddnn-encoding`.
 
 The Android shell (`devices/android/app/.../update/BundleUpdater.kt` in the `mmb` repo) polls `manifest.json`, verifies the signature with the baked-in public key, downloads the referenced bundle, verifies `sha256`, and atomically swaps `bundle/current`.
 
@@ -31,5 +31,4 @@ Hot data (last ~24 h) lives in Cloudflare KV (`DATASETS_KV` binding of the `edge
 
 ## Related specs (in the `mmb` repo)
 
-- `docs/ais/ais-shell-updater-and-datasets.md` (id:ais-5e1d39) — full architecture.
-- `docs/plans/plan-shell-updater-and-datasets-backend.md` — execution plan.
+- `docs/ais/ais-shell-updater-and-datasets.md` (id:ais-5e1d39) — full architecture (execution plan distilled into this AIS).

@@ -1,5 +1,5 @@
 # Bundle artefacts (Android shell-updater)
-d/a/bundles/*.zip binary
+d/a/v/*.zip binary
 d/a/manifest.json text eol=lf
 d/a/manifest.json.sig binary
 d/a/public-key.pem text eol=lf
