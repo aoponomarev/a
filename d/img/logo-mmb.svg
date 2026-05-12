@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+  <!-- Figma image=logo-mmb (316:10151); fills match --co-green / --co-red (id:ais-9b7c4d). -->
+  <path fill="#008800" d="M60 20c0-5.52 4.48-10 10-10v30c0 5.52-4.48 10-10 10V20Z"/>
+  <path fill="#AA0044" d="M50 30c5.52 0 10 4.48 10 10v10c-5.52 0-10-4.48-10-10V30Z"/>
+  <path fill="#008800" d="M40 40c0-5.52 4.48-10 10-10v30c0 5.52-4.48 10-10 10V40Z"/>
+  <path fill="#AA0044" d="M30 30c5.52 0 10 4.48 10 10v30c-5.52 0-10-4.48-10-10V30Z"/>
+  <path fill="#008800" d="M20 40c0-5.52 4.48-10 10-10v10c0 5.52-4.48 10-10 10V40Z"/>
+  <path fill="#AA0044" d="M10 10c5.52 0 10 4.48 10 10v30C14.48 50 10 45.52 10 40V10Z"/>
+</svg>
