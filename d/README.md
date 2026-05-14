@@ -8,4 +8,4 @@ Static assets and bundle payloads served under **`https://aoponomarev.github.io/
 | **`fonts/`** | Self-hosted **`woff2`** (Roboto Condensed subsets, Material Icons) → PF **`main-vue/public/fonts/`** (**`#for-mob-ui-bundle-fonts-repo-a-d-fonts`**). |
 | **`img/`** | Atom-layer raster/SVG for **`AImage`** absolute HTTPS (**`https://…/a/d/img/…`**, **`#for-mob-ui-tatc-atoms-remote-img`**). |
 | **`a/`** | Signed shell **`manifest.json`** + **`v/<YYMMDDNN>.zip`**. |
-| **`dev/`** | Gitignored workstation smoke (PF **`npm run android-shell:dev-browser`**) — **`index.html`** plus mirrored **`icons/`**, **`fonts/`**, **`atoms/`**. |
+| **`index.html`** | Gitignored workstation smoke shell (PF **`npm run android-shell:dev-browser`**). **`./icons/*`** → **`icons/`**, **`url(fonts/*)`** → **`fonts/`** (same repo paths as SSOT — no duplicate asset trees). |
