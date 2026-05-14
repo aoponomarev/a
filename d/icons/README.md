@@ -10,4 +10,4 @@ Layout:
 - `fluent/` — Fluent UI System Icons (MIT) stand-ins for Segoe in offline zip
 - `atoms/` — Raster/vector paired with `a/image` when shipped inside zip (e.g. `logo-mmb.svg`)
 
-Fonts remain under **PF** `main-vue/public/fonts/` (not icons).
+Self-hosted **`woff2`** fonts SSOT: sibling **`../fonts/`** (mirrored into **`main-vue/public/fonts/`** and zip-root **`fonts/`** per **`#for-mob-ui-bundle-fonts-repo-a-d-fonts`**).
