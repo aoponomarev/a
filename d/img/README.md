@@ -1,5 +1,7 @@
 # Static images for WebView Presentation Layer
 
+Sibling SSOT trees: **`../icons/`** (FA / Fluent / atoms SVG), **`../fonts/`** (offline **`woff2`**). This folder uses the **`img`** segment so **`https://…/a/d/img/<file>`** matches **`d/img/`** on disk (parallel to **`d/icons/`**, **`d/fonts/`**).
+
 Raster/SVG referenced by the signed shell bundle via absolute HTTPS (see id:ais-9b7c4d, `#for-mob-ui-tatc-atoms-remote-img`):
 
 - `https://aoponomarev.github.io/a/d/img/ui-keyboard.png`
