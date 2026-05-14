@@ -1,8 +1,12 @@
 # Static images for WebView Presentation Layer
 
-Sibling SSOT trees: **`../icons/`** (FA / Fluent / atoms SVG), **`../fonts/`** (offline **`woff2`**). This folder uses the **`img`** segment so **`https://…/a/d/img/<file>`** matches **`d/img/`** on disk (parallel to **`d/icons/`**, **`d/fonts/`**).
+Sibling SSOT trees: **`../icons/`** (FA6 / Fluent SVG), **`../fonts/`** (offline **`woff2`**). This folder uses the **`img`** segment so **`https://…/a/d/img/<file>`** matches **`d/img/`** on disk (parallel to **`d/icons/`**, **`d/fonts/`**).
 
-Raster/SVG referenced by the signed shell bundle via absolute HTTPS (see id:ais-9b7c4d, `#for-mob-ui-tatc-atoms-remote-img`):
+The same bytes ship next to inlined **`index.html`** as **`./img/<file>`** in the signed WebView zip when **mmb** runs **`npm run android-shell:bundle:vue:build`** (**`#for-mob-ui-bundle-img-repo-a-d-img`**), so **`src` may omit HTTPS** during **`file://`** work.
+
+**Primary in shipped WebView / workstation `file:`:** `./img/ui-keyboard.png`, `./img/logo-mmb.svg` next to unpacked **`index.html`**.
+
+Equivalent on GitHub Pages (optional when HTML has no sibling **`img/`** tree):
 
 - `https://aoponomarev.github.io/a/d/img/ui-keyboard.png`
 - `https://aoponomarev.github.io/a/d/img/logo-mmb.svg`
