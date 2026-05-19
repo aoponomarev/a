@@ -13,3 +13,10 @@ data/metrics/**/*.ndjson binary
 *.json text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
+*.js text working-tree-encoding=UTF-8
+*.ts text working-tree-encoding=UTF-8
+*.jsonl text working-tree-encoding=UTF-8
+*.html text working-tree-encoding=UTF-8
+*.css text working-tree-encoding=UTF-8
+*.txt text working-tree-encoding=UTF-8
+*.xml text working-tree-encoding=UTF-8

@@ -1,8 +1,8 @@
-﻿# Self-hosted fonts (WebView Presentation Layer)
+# Self-hosted fonts (WebView Presentation Layer)
 
-SSOT for `woff2` / TTF shipped next to `index.html` in the signed bundle (`url(fonts/вЂ¦)` in CSS). Mirrored into PF `devices/android/bundle-src/main-vue/public/fonts/` before `vite build` (`#for-mob-ui-bundle-fonts-repo-a-d-fonts`).
+SSOT for `woff2` / TTF shipped next to `index.html` in the signed bundle (`url(fonts/…)` in CSS). Mirrored into PF `devices/android/bundle-src/main-vue/public/fonts/` before `vite build` (`#for-mob-ui-bundle-fonts-repo-a-d-fonts`).
 
-**Mobile shell glyphs** (FAB, `ASymbol` / `TokenIconsRows`) use **only** these font files вЂ” Fluent-style glyphs come from `SegoeFluentIcons.woff2` (Segoe MDL v2 redistribution under Windows font-license terms applied to bundled copies for WebView `file:` parity), **not** from a sibling SVG repo tree.
+**Mobile shell glyphs** (FAB, `ASymbol` / `TokenIconsRows`) use **only** these font files — Fluent-style glyphs come from `SegoeFluentIcons.woff2` (Segoe MDL v2 redistribution under Windows font-license terms applied to bundled copies for WebView `file:` parity), **not** from a sibling SVG repo tree.
 
 | File | Source / license | Notes |
 | --- | --- | --- |
