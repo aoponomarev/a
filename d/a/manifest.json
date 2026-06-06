@@ -1,8 +1,8 @@
 {
-  "version": 26060610,
-  "sha256": "55d1b4a24d87ee7265a0e7d0a6e93f6d92400f3652f666fd6e1f17f1c6b5bab5",
-  "url": "https://aoponomarev.github.io/a/d/a/v/26060610.zip",
-  "releasedAt": "2026-06-06T12:27:53.296Z",
+  "version": 26060611,
+  "sha256": "2a9717cdc2d23d74e1f16595a23344bea2465346d9ba73aeec6e28887680d5db",
+  "url": "https://aoponomarev.github.io/a/d/a/v/26060611.zip",
+  "releasedAt": "2026-06-06T12:28:52.008Z",
   "minShellVersion": 1,
-  "pagesBuildDeployment": 507
+  "pagesBuildDeployment": 508
 }
