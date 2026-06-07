@@ -7,8 +7,9 @@ SSOT for `woff2` / TTF shipped next to `index.html` in the signed bundle (`url(f
 | File | Source / license | Notes |
 | --- | --- | --- |
 | `roboto-condensed-*.woff2` | Fontdelivery / bundler subset | Log + `font/minimal` column |
-| `MaterialIcons-Regular.woff2` | [Google Fonts / Material Icons](https://fonts.google.com/icons) (Apache 2.0) | Ligature icon font for TATC Material row |
-| `MaterialSymbolsOutlined-logout.ttf` | [Material Symbols Outlined](https://fonts.google.com/icons?icon.query=logout&icon.set=Material+Symbols&icon.style=Outlined) (Apache 2.0) | Subset for `token-symbol__logout` PUA **U+E9BA** |
+| `MaterialSymbolsOutlined-mob-ui.ttf` | [Material Symbols Outlined](https://fonts.google.com/icons) (Apache 2.0) | Unified mob-ui subset; manifest `is/contracts/mobile-ui-material-glyphs.json`; regen `npm run android-shell:material-glyphs:subset` |
 | `fa-solid-900.woff2` | [Font Awesome Free 6](https://fontawesome.com/) (Icons: CC BY 4.0; Fonts: SIL OFL 1.1) | **Solid** PUA stack (`font-weight` **900**) for TATC FA row |
 | `fa-regular-400.woff2` | [Font Awesome Free 6](https://fontawesome.com/) (same license) | **Regular** PUA stack (`font-weight` **400**); `tatc-icons__radio` uses `circle` (**U+F111**) |
 | `SegoeFluentIcons.woff2` | Segoe Fluent Icons (**Segoe MDL 2 Assets System**); redistribution per Microsoft supplemental font-license terms bundled with `SegoeFluentIcons.license.txt` | PUA Fluent-style glyphs (`fluent()` mixin, shell nav, search, close tiles) |
+
+**Material mob-ui glyph inventory (PUA):** caret U+E5C5, num-sort U+E5D7, help U+E887, ok U+E86C, back U+E5C4, next U+E5C8, slide U+E8D5, logout U+E9BA, drag-indicator U+E945. Style contract: Outlined, FILL=0, wght=400, opsz=24.
