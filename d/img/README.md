@@ -4,7 +4,7 @@
 
 The same bytes ship next to inlined `index.html` as `./img/<file>` in the signed WebView zip when **mmb** runs `npm run android-shell:bundle:vue:build` (`#for-mob-ui-bundle-img-repo-a-d-img`), so `src` may omit HTTPS** during `file://` work.
 
-**Primary in shipped WebView / workstation `file:`:** `./img/ui-keyboard.png`, `./img/logo-mmb.svg` next to unpacked `index.html`.
+**Primary in shipped WebView / workstation `file:`:** `./img/ui-keyboard.png`, `./img/logo-mmb.svg` next to unpacked `index.html`. Browser tab favicon — тот же `logo-mmb.svg` via `<link rel="icon" type="image/svg+xml" href="./img/logo-mmb.svg">` in shell `index.html`.
 
 Equivalent on GitHub Pages (optional when HTML has no sibling `img/` tree):
 
